@@ -20,14 +20,14 @@ def start(bot, update):
     update.message.reply_text("Olá, {}!".format(update.message.from_user.first_name))
 
 def liga(bot, update):
-    serial("1");
-    update.message.reply_text("Feito");
+    envSerial("1")
+    update.message.reply_text("Feito")
     
 def desliga(bot, update):
-    serial("2");
-    update.message.reply_text("Feito");
+    envSerial("2")
+    update.message.reply_text("Feito")
 
-def serial(content):
+def envSerial(content):
     ser.write(content.encode('utf-8'))      # write a string
     
 def main():

@@ -20,25 +20,28 @@ def start(bot, update):
     update.message.reply_text("Olá, {}!".format(update.message.from_user.first_name))
 
 def liga(bot, update):
-    serial("1")
-    update.message.reply_text("Feito");
+    envSerial("1")
+    update.message.reply_text("Feito")
 def desliga(bot, update):
-    serial("2")
-    update.message.reply_text("Feito");
+    envSerial("2")
+    update.message.reply_text("Feito")
     
 def readPotentiometer(bot, job):
     ser.read(512) # eat entire buffer
-    serial("p")
+    envSerial("p")
     sleep(0.5)
     cc=str(ser.readline())
     line = cc[3:-5]
     vFloat = int(line)/1024.0
     bot.send_message(chat_id=119947806, text="Valor Atual: {:.1f}".format(vFloat*40-10))
 
+def sayhi(bot, update):
+    pass
+
 def monitorar(bot, update, job_queue,chat_data,args):
-    job = job_queue.run_repeating(sayhi, 5, context=update)
+    job_queue.run_repeating(sayhi, 5, context=update)
     
-def serial(content):
+def envSerial(content):
     ser.write(content.encode('utf-8'))      # write a string
     
 def main():
